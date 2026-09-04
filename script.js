@@ -97,9 +97,13 @@ function afficherProduits(listeProduits) {
             <p>${produit.prix.toLocaleString()} FCFA</p>
             <p>${produit.description}</p>
 
-            <button class="btn-panier" onclick="ajouterAuPanier(${produit.id})">
-                🛒 Ajouter au panier
-            </button>
+         <button class="btn-panier" onclick="ajouterAuPanier(${produit.id})">
+    🛒 Ajouter au panier
+</button>
+
+<button class="btn-acheter" onclick="acheterMaintenant(${produit.id})">
+    💳 Acheter maintenant
+</button>
 
             <button class="btn-supprimer" onclick="supprimerProduit(${produit.id})">
                 🗑️ Supprimer
