@@ -75,6 +75,7 @@ recherche.addEventListener("input", function () {
 });
 
 
+/* AFFICHER LES PRODUITS */
 function afficherProduits(listeProduits) {
 
     const liste = document.getElementById("liste-produits");
@@ -95,10 +96,36 @@ function afficherProduits(listeProduits) {
             <h2>${produit.nom}</h2>
             <p>${produit.prix.toLocaleString()} FCFA</p>
             <p>${produit.description}</p>
+
+            <button class="btn-supprimer" onclick="supprimerProduit(${produit.id})">
+                🗑️ Supprimer
+            </button>
         `;
 
         liste.appendChild(article);
     });
 }
+
+
+/* SUPPRIMER UN PRODUIT */
+function supprimerProduit(id) {
+
+    const confirmation = confirm("Voulez-vous vraiment supprimer ce produit ?");
+
+    if (!confirmation) {
+        return;
+    }
+
+    produits = produits.filter(function (produit) {
+        return produit.id !== id;
+    });
+
+    localStorage.setItem("produits", JSON.stringify(produits));
+
+    afficherProduits(produits);
+
+    alert("🗑️ Produit supprimé !");
+}
+
 
 afficherProduits(produits);
