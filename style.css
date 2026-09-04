@@ -268,3 +268,41 @@ body > h2 {
         height: 240px;
     }
 }
+/* =========================
+   MOYENS DE PAIEMENT
+========================= */
+
+.paiement {
+    width: 92%;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.paiement h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.moyen-paiement {
+    width: 100%;
+    padding: 15px;
+    margin: 8px 0;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #f9fafb;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.moyen-paiement:hover {
+    background: #eef4ff;
+    border-color: #2563eb;
+    transform: translateY(-2px);
+}
