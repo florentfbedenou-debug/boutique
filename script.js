@@ -129,3 +129,38 @@ function supprimerProduit(id) {
 
 
 afficherProduits(produits);
+const boutonsPaiement = document.querySelectorAll(".moyen-paiement");
+
+boutonsPaiement.forEach(function (bouton) {
+
+    bouton.addEventListener("click", function () {
+
+        const moyen = bouton.dataset.paiement;
+
+        if (moyen === "tmoney") {
+            alert("📱 Paiement T-Money sélectionné.");
+        }
+
+        if (moyen === "flooz") {
+            alert("📱 Paiement Flooz sélectionné.");
+        }
+
+        if (moyen === "visa") {
+            alert("💳 Paiement Visa sélectionné.");
+        }
+
+        if (moyen === "mastercard") {
+            alert("💳 Paiement Mastercard sélectionné.");
+        }
+
+        if (moyen === "virement") {
+            alert("🏦 Virement bancaire sélectionné.");
+        }
+
+        if (moyen === "livraison") {
+            alert("💵 Paiement à la livraison sélectionné.");
+        }
+
+    });
+
+});
