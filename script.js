@@ -3,6 +3,7 @@ let produits = JSON.parse(localStorage.getItem("produits")) || [];
 const btnAjouter = document.getElementById("btn-ajouter");
 const btnEnregistrer = document.getElementById("btn-enregistrer");
 const btnAnnuler = document.getElementById("btn-annuler");
+const recherche = document.getElementById("recherche-produit");
 
 const formulaire = document.getElementById("formulaire-produit");
 
@@ -42,7 +43,7 @@ btnEnregistrer.addEventListener("click", function () {
 
         localStorage.setItem("produits", JSON.stringify(produits));
 
-        afficherProduits();
+        afficherProduits(produits);
 
         document.getElementById("nom-produit").value = "";
         document.getElementById("prix-produit").value = "";
@@ -57,18 +58,40 @@ btnEnregistrer.addEventListener("click", function () {
     lecteur.readAsDataURL(fichierImage);
 });
 
-function afficherProduits() {
+
+/* RECHERCHE */
+recherche.addEventListener("input", function () {
+
+    const texte = recherche.value.toLowerCase().trim();
+
+    const produitsFiltres = produits.filter(function (produit) {
+        return (
+            produit.nom.toLowerCase().includes(texte) ||
+            produit.description.toLowerCase().includes(texte)
+        );
+    });
+
+    afficherProduits(produitsFiltres);
+});
+
+
+function afficherProduits(listeProduits) {
 
     const liste = document.getElementById("liste-produits");
 
     liste.innerHTML = "";
 
-    produits.forEach(function (produit) {
+    if (listeProduits.length === 0) {
+        liste.innerHTML = "<p>Aucun produit trouvé.</p>";
+        return;
+    }
+
+    listeProduits.forEach(function (produit) {
 
         const article = document.createElement("div");
 
         article.innerHTML = `
-            <img src="${produit.image}" width="200">
+            <img src="${produit.image}" alt="${produit.nom}">
             <h2>${produit.nom}</h2>
             <p>${produit.prix.toLocaleString()} FCFA</p>
             <p>${produit.description}</p>
@@ -78,4 +101,4 @@ function afficherProduits() {
     });
 }
 
-afficherProduits();
+afficherProduits(produits);
