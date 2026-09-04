@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -13,34 +12,55 @@
 
 <body>
 
-    <h1>Bienvenue dans ma boutique 🛍️</h1>
+    <h1>🛍️ Ma Boutique</h1>
 
-    <p>Ma première boutique en ligne</p>
-	<button onclick="afficherFormulaire()">
-    ⚙️ Ajouter un produit
-</button>
+    <p>Bienvenue dans ma boutique en ligne</p>
 
-<div id="formulaire-produit" style="display: none;">
-    <h2>Ajouter un produit</h2>
-
-    <input type="text" id="nom-produit" placeholder="Nom du produit">
-
-    <input type="number" id="prix-produit" placeholder="Prix en FCFA">
-
-    <input type="file" id="image-produit" accept="image/*">
-
-    <br><br>
-
-    <button onclick="ajouterProduit()">
-        Ajouter le produit
+    <button id="btn-ajouter">
+        ⚙️ Ajouter un produit
     </button>
-</div>
-<h2>🛍️ Nos produits</h2>
 
-<div id="liste-produits"></div>
+    <div id="formulaire-produit" class="formulaire">
+        <h2>➕ Nouveau produit</h2>
+
+        <input
+            type="text"
+            id="nom-produit"
+            placeholder="Nom du produit"
+        >
+
+        <input
+            type="number"
+            id="prix-produit"
+            placeholder="Prix en FCFA"
+        >
+
+        <textarea
+            id="description-produit"
+            placeholder="Description du produit"
+        ></textarea>
+
+        <input
+            type="file"
+            id="image-produit"
+            accept="image/*"
+        >
+
+        <button id="btn-enregistrer">
+            ✅ Enregistrer le produit
+        </button>
+
+        <button id="btn-annuler">
+            ❌ Annuler
+        </button>
+    </div>
+
+    <h2>🛒 Nos produits</h2>
+
+    <div id="liste-produits"></div>
+
     <script src="script.js"></script>
 
 </body>
 
 </html>
-```
