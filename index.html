@@ -1,0 +1,46 @@
+```html
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ma Boutique</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Bienvenue dans ma boutique 🛍️</h1>
+
+    <p>Ma première boutique en ligne</p>
+	<button onclick="afficherFormulaire()">
+    ⚙️ Ajouter un produit
+</button>
+
+<div id="formulaire-produit" style="display: none;">
+    <h2>Ajouter un produit</h2>
+
+    <input type="text" id="nom-produit" placeholder="Nom du produit">
+
+    <input type="number" id="prix-produit" placeholder="Prix en FCFA">
+
+    <input type="file" id="image-produit" accept="image/*">
+
+    <br><br>
+
+    <button onclick="ajouterProduit()">
+        Ajouter le produit
+    </button>
+</div>
+<h2>🛍️ Nos produits</h2>
+
+<div id="liste-produits"></div>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+```
