@@ -1,20 +1,181 @@
-```css
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    text-align: center;
+    background: #f5f5f5;
     margin: 0;
+    color: #222;
 }
 
+/* EN-TÊTE */
 h1 {
-    background-color: #111;
-    color: white;
-    padding: 30px;
+    background: white;
+    color: #1877f2;
+    padding: 20px;
     margin: 0;
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-p {
-    font-size: 20px;
-    margin-top: 30px;
+/* TEXTE D'ACCUEIL */
+body > p {
+    text-align: center;
+    font-size: 18px;
+    margin: 25px 10px;
+    color: #555;
 }
-```
+
+/* BOUTON AJOUTER */
+#btn-ajouter {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #1877f2;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btn-ajouter:hover {
+    background: #0d65d9;
+}
+
+/* FORMULAIRE */
+.formulaire {
+    display: none;
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.formulaire h2 {
+    margin-top: 0;
+}
+
+.formulaire input,
+.formulaire textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.formulaire textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+#btn-enregistrer,
+#btn-annuler {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    margin: 8px 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#btn-enregistrer {
+    background: #42b72a;
+    color: white;
+}
+
+#btn-annuler {
+    background: #ddd;
+    color: #222;
+}
+
+/* TITRE PRODUITS */
+body > h2 {
+    text-align: left;
+    margin: 30px 20px 15px;
+}
+
+/* LISTE DES PRODUITS */
+#liste-produits {
+    width: 95%;
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    padding-bottom: 40px;
+}
+
+/* CARTE PRODUIT */
+#liste-produits > div {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    transition: transform 0.2s ease;
+}
+
+#liste-produits > div:hover {
+    transform: translateY(-4px);
+}
+
+/* IMAGE */
+#liste-produits img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+/* NOM */
+#liste-produits h2 {
+    font-size: 18px;
+    margin: 12px 15px 5px;
+}
+
+/* PRIX */
+#liste-produits p {
+    font-size: 17px;
+    margin: 7px 15px;
+}
+
+#liste-produits p:first-of-type {
+    color: #1877f2;
+    font-weight: bold;
+}
+
+/* DESCRIPTION */
+#liste-produits p:last-of-type {
+    color: #666;
+    font-size: 14px;
+}
+
+/* TÉLÉPHONE */
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    #liste-produits {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    #liste-produits img {
+        height: 170px;
+    }
+
+    #liste-produits h2 {
+        font-size: 16px;
+    }
+}
