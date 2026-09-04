@@ -1,10 +1,10 @@
 let produits = JSON.parse(localStorage.getItem("produits")) || [];
+let panier = JSON.parse(localStorage.getItem("panier")) || [];
 
 const btnAjouter = document.getElementById("btn-ajouter");
 const btnEnregistrer = document.getElementById("btn-enregistrer");
 const btnAnnuler = document.getElementById("btn-annuler");
 const recherche = document.getElementById("recherche-produit");
-
 const formulaire = document.getElementById("formulaire-produit");
 
 btnAjouter.addEventListener("click", function () {
@@ -97,6 +97,10 @@ function afficherProduits(listeProduits) {
             <p>${produit.prix.toLocaleString()} FCFA</p>
             <p>${produit.description}</p>
 
+            <button class="btn-panier" onclick="ajouterAuPanier(${produit.id})">
+                🛒 Ajouter au panier
+            </button>
+
             <button class="btn-supprimer" onclick="supprimerProduit(${produit.id})">
                 🗑️ Supprimer
             </button>
@@ -107,10 +111,84 @@ function afficherProduits(listeProduits) {
 }
 
 
+/* AJOUTER AU PANIER */
+function ajouterAuPanier(id) {
+
+    const produit = produits.find(function (produit) {
+        return produit.id === id;
+    });
+
+    if (!produit) {
+        return;
+    }
+
+    panier.push(produit);
+
+    localStorage.setItem("panier", JSON.stringify(panier));
+
+    afficherPanier();
+
+    alert("🛒 Produit ajouté au panier !");
+}
+
+
+/* AFFICHER LE PANIER */
+function afficherPanier() {
+
+    const articlesPanier = document.getElementById("articles-panier");
+    const totalPanier = document.getElementById("total-panier");
+
+    articlesPanier.innerHTML = "";
+
+    if (panier.length === 0) {
+        articlesPanier.innerHTML = "<p>Votre panier est vide.</p>";
+        totalPanier.textContent = "0 FCFA";
+        return;
+    }
+
+    let total = 0;
+
+    panier.forEach(function (produit, index) {
+
+        total += produit.prix;
+
+        const article = document.createElement("div");
+
+        article.innerHTML = `
+            <p>
+                <strong>${produit.nom}</strong>
+                — ${produit.prix.toLocaleString()} FCFA
+
+                <button onclick="retirerDuPanier(${index})">
+                    ❌
+                </button>
+            </p>
+        `;
+
+        articlesPanier.appendChild(article);
+    });
+
+    totalPanier.textContent = total.toLocaleString() + " FCFA";
+}
+
+
+/* RETIRER DU PANIER */
+function retirerDuPanier(index) {
+
+    panier.splice(index, 1);
+
+    localStorage.setItem("panier", JSON.stringify(panier));
+
+    afficherPanier();
+}
+
+
 /* SUPPRIMER UN PRODUIT */
 function supprimerProduit(id) {
 
-    const confirmation = confirm("Voulez-vous vraiment supprimer ce produit ?");
+    const confirmation = confirm(
+        "Voulez-vous vraiment supprimer ce produit ?"
+    );
 
     if (!confirmation) {
         return;
@@ -120,47 +198,19 @@ function supprimerProduit(id) {
         return produit.id !== id;
     });
 
+    panier = panier.filter(function (produit) {
+        return produit.id !== id;
+    });
+
     localStorage.setItem("produits", JSON.stringify(produits));
+    localStorage.setItem("panier", JSON.stringify(panier));
 
     afficherProduits(produits);
+    afficherPanier();
 
     alert("🗑️ Produit supprimé !");
 }
 
 
 afficherProduits(produits);
-const boutonsPaiement = document.querySelectorAll(".moyen-paiement");
-
-boutonsPaiement.forEach(function (bouton) {
-
-    bouton.addEventListener("click", function () {
-
-        const moyen = bouton.dataset.paiement;
-
-        if (moyen === "tmoney") {
-            alert("📱 Paiement T-Money sélectionné.");
-        }
-
-        if (moyen === "flooz") {
-            alert("📱 Paiement Flooz sélectionné.");
-        }
-
-        if (moyen === "visa") {
-            alert("💳 Paiement Visa sélectionné.");
-        }
-
-        if (moyen === "mastercard") {
-            alert("💳 Paiement Mastercard sélectionné.");
-        }
-
-        if (moyen === "virement") {
-            alert("🏦 Virement bancaire sélectionné.");
-        }
-
-        if (moyen === "livraison") {
-            alert("💵 Paiement à la livraison sélectionné.");
-        }
-
-    });
-
-});
+afficherPanier();
